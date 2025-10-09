@@ -1,0 +1,9 @@
+node_modules/
+
+# Root env files
+.env
+.env.*
+
+# Project-specific env files
+src/config/.env.development
+src/config/.env.production

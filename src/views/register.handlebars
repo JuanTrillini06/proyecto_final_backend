@@ -1,0 +1,31 @@
+<section>
+    <h1>Registro</h1>
+    <article id="registerMessage" hidden></article>
+    <form id="registerForm">
+        <div class="grid">
+            <label>
+                Nombre
+                <input type="text" name="first_name" required />
+            </label>
+            <label>
+                Apellido
+                <input type="text" name="last_name" required />
+            </label>
+        </div>
+        <label>
+            Email
+            <input type="email" name="email" required />
+        </label>
+        <label>
+            Edad
+            <input type="number" name="age" min="0" />
+        </label>
+        <label>
+            Contrasena
+            <input type="password" name="password" required />
+        </label>
+        <button type="submit">Crear cuenta</button>
+    </form>
+    <p>¿Ya tenes cuenta? <a href="/login">Inicia sesion</a></p>
+</section>
+<script src="/js/auth.js" defer></script>

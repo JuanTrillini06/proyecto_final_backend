@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Final</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        header {
+            margin-bottom: 1rem;
+        }
+        .app-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .nav-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .nav-actions span {
+            font-weight: 600;
+        }
+        /* Ajustes visuales para controles de cantidad en cards de producto */
+        .product-card {
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card .qty-controls {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 8px 0;
+        }
+        .product-card .qty-controls .p-qty-input {
+            flex: 1 1 auto;
+            min-width: 120px;
+            height: 44px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .product-card .qty-controls .p-qty-decrease,
+        .product-card .qty-controls .p-qty-increase {
+            min-width: 48px;
+            height: 44px;
+        }
+    </style>
+</head>
+<body>
+    <header class="app-container">
+        <nav>
+            <ul>
+                <li><strong><a href="/">Proyecto Final</a></strong></li>
+            </ul>
+            <ul class="nav-actions">
+                <li><a href="/">Productos</a></li>
+                <li><a href="/cart">Carrito</a></li>
+                {{#if isLoggedIn}}
+                    {{#if isAdmin}}
+                        <li><a href="/admin/products">Admin Productos</a></li>
+                    {{/if}}
+                    <li><span>Hola, {{user.first_name}}</span></li>
+                    <li><button id="logoutBtn" class="contrast">Cerrar sesion</button></li>
+                {{else}}
+                    <li><a href="/login">Iniciar sesion</a></li>
+                    <li><a href="/register">Registrarse</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </header>
+    <main class="app-container">
+        {{{body}}}
+    </main>
+    <script src="/js/navbar.js"></script>
+</body>
+</html>

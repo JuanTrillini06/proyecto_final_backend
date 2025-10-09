@@ -1,0 +1,75 @@
+<section>
+    <h1>Catalogo de productos</h1>
+    <article>
+        <form method="get" action="/">
+            <div class="grid">
+                <label>
+                    Buscar por titulo
+                    <input type="text" name="title" value="{{filters.title}}" placeholder="Titulo" />
+                </label>
+                <label>
+                    Categoria
+                    <input type="text" name="category" value="{{filters.category}}" placeholder="Categoria" />
+                </label>
+                <label>
+                    Estado
+                    <select name="status">
+                        <option value="">Todos</option>
+                        <option value="true" {{#if (eq filters.status "true")}}selected{{/if}}>Activos</option>
+                        <option value="false" {{#if (eq filters.status "false")}}selected{{/if}}>Inactivos</option>
+                    </select>
+                </label>
+                <label>
+                    Ordenar por precio
+                    <select name="sort">
+                        <option value="">Sin orden</option>
+                        <option value="asc" {{#if (eq filters.sort "asc")}}selected{{/if}}>Menor a mayor</option>
+                        <option value="desc" {{#if (eq filters.sort "desc")}}selected{{/if}}>Mayor a menor</option>
+                    </select>
+                </label>
+                <label>
+                    Limite por pagina
+                    <input type="number" min="1" name="limit" value="{{filters.limit}}" />
+                </label>
+            </div>
+            <button type="submit">Aplicar filtros</button>
+        </form>
+    </article>
+
+    <article id="productMessage" hidden></article>
+
+    <div style="display: flex; align-items:center; justify-content:space-between; flex-direction: row; flex-wrap: wrap;">
+        {{#each products}}
+            <article class="product-card" style="width: 30%; " data-product-id="{{this._id}}">
+                <header>
+                    <h3>{{this.title}}</h3>
+                </header>
+                <p>{{this.description}}</p>
+                <p><strong>Precio:</strong> ${{formatCurrency this.price}}</p>
+                <p><strong>Stock:</strong> {{this.stock}}</p>
+                <div class="qty-controls" style="display:flex; align-items:center; gap:12px; margin: 8px 0; width:100%;">
+                    <button class="secondary outline p-qty-decrease" aria-label="Disminuir" style="min-width:48px; height:44px;">-</button>
+                    <input type="number" class="p-qty-input" min="1" value="1" style="flex:1 1 auto; min-width:120px; height:44px; font-size:1rem; text-align:center;" />
+                    <button class="secondary outline p-qty-increase" aria-label="Aumentar" style="min-width:48px; height:44px;">+</button>
+                </div>
+                <button class="secondary outline add-to-cart" data-product-id="{{this._id}}">Agregar al carrito</button>
+            </article>
+        {{else}}
+            <p>No hay productos disponibles.</p>
+        {{/each}}
+    </div>
+
+    <nav aria-label="Paginacion">
+        <ul class="pagination">
+            {{#if pagination.hasPrevPage}}
+                <li><a href="{{pagination.prevLink}}">Anterior</a></li>
+            {{/if}}
+            <li>Pagina {{pagination.currentPage}} de {{pagination.totalPages}}</li>
+            {{#if pagination.hasNextPage}}
+                <li><a href="{{pagination.nextLink}}">Siguiente</a></li>
+            {{/if}}
+        </ul>
+    </nav>
+</section>
+
+<script src="/js/products.js" defer></script>

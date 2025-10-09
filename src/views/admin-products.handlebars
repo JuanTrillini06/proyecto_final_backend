@@ -1,0 +1,84 @@
+<section>
+    <h1>Panel de administracion</h1>
+    <article id="adminMessage" hidden></article>
+    <form id="productForm">
+        <input type="hidden" name="_id" />
+        <div class="grid">
+            <label>
+                Titulo
+                <input type="text" name="title" required />
+            </label>
+            <label>
+                Codigo
+                <input type="text" name="code" required />
+            </label>
+        </div>
+        <label>
+            Descripcion
+            <textarea name="description" rows="3" required></textarea>
+        </label>
+        <div class="grid">
+            <label>
+                Precio
+                <input type="number" step="0.01" min="0" name="price" required />
+            </label>
+            <label>
+                Stock
+                <input type="number" min="0" name="stock" required />
+            </label>
+            <label>
+                Categoria
+                <input type="text" name="category" required />
+            </label>
+            <label>
+                Estado
+                <select name="status">
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                </select>
+            </label>
+        </div>
+        <footer>
+            <button type="submit">Guardar</button>
+            <button type="button" id="resetFormBtn" class="secondary">Limpiar</button>
+        </footer>
+    </form>
+
+    <h2>Productos cargados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="adminProductList">
+            {{#each products}}
+                <tr>
+                    <td>{{this.title}}</td>
+                    <td>${{formatCurrency this.price}}</td>
+                    <td>{{this.stock}}</td>
+                    <td>{{#if this.status}}Activo{{else}}Inactivo{{/if}}</td>
+                    <td>
+                        <button
+                            class="secondary outline edit-product"
+                            data-product-id="{{this._id}}"
+                            data-title="{{this.title}}"
+                            data-description="{{this.description}}"
+                            data-price="{{this.price}}"
+                            data-stock="{{this.stock}}"
+                            data-category="{{this.category}}"
+                            data-status="{{this.status}}"
+                            data-code="{{this.code}}"
+                        >Editar</button>
+                        <button class="contrast delete-product" data-product-id="{{this._id}}">Eliminar</button>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</section>
+<script src="/js/admin.js" defer></script>

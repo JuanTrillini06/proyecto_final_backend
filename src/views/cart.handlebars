@@ -1,0 +1,41 @@
+<section>
+    <h1>Tu carrito</h1>
+    <article id="cartMessage" hidden></article>
+    {{#if cart.products.length}}
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each cart.products}}
+                    <tr data-product-id="{{this.productId}}">
+                        <td>{{this.title}}</td>
+                        <td>
+                            <div class="qty-controls" style="display:flex; align-items:center; gap:8px;">
+                                <button class="secondary outline qty-decrease" aria-label="Disminuir">-</button>
+                                <span class="qty-value">{{this.quantity}}</span>
+                                <button class="secondary outline qty-increase" aria-label="Aumentar">+</button>
+                            </div>
+                        </td>
+                        <td>${{formatCurrency this.price}}</td>
+                        <td>${{formatCurrency (multiply this.price this.quantity)}}</td>
+                        <td>
+                            <button class="secondary outline remove-product" data-product-id="{{this.productId}}">Eliminar</button>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <p><strong>Total:</strong> ${{formatCurrency cartTotal}}</p>
+        <button id="purchaseBtn" class="contrast" data-cart-id="{{cartId}}">Comprar</button>
+    {{else}}
+        <p>Tu carrito esta vacio.</p>
+    {{/if}}
+</section>
+<script src="/js/cart.js" defer></script>
