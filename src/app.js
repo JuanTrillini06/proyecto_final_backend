@@ -7,6 +7,8 @@ import handlebars from "express-handlebars";
 import passport from "passport";
 import cookieParser from "cookie-parser";
 import initializePassport from "./config/passport.config.js";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUiExpress from "swagger-ui-express";
 
 import productRouter from "./routes/products.routes.js";
 import cartRouter from "./routes/carts.routes.js";
@@ -42,6 +44,22 @@ app.use(express.static(__dirname + "/public"));
 initializePassport();
 app.use(passport.initialize());
 app.use(attachCurrentUser);
+
+// Swagger
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.1",
+    info: {
+      title: "Documentación de proyecto final",
+      description: "Proyecto final integral de backend",
+      version: "1.0.0",
+    },
+  },
+  apis: [`${__dirname}/docs/**/*.yaml`],
+};
+const specs = swaggerJSDoc(swaggerOptions);
+app.use("/apidocs", swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
+
 
 app.use("/api/products", productRouter);
 app.use("/api/carts", cartRouter);

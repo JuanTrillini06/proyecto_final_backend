@@ -1,0 +1,88 @@
+paths:
+  /api/auth/register:
+    post:
+      summary: Registrar un nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string                  
+                age:
+                  type: number                  
+                password:
+                  type: string                
+      responses:
+        '201':
+          description: Usuario registrado exitosamente
+        '400':
+          description: Bad request
+  /api/auth/login:
+    post:
+      summary: Loguear un usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Usuario logueado correctamente
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /logout:
+    post:
+      summary: Cerrar sesión de un usuario
+      responses:
+        '200':
+          description: usuario cerro sesion correctamente
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /current:
+    get:
+      summary: Obtener el usuario actual
+      responses:
+        '200':
+          description: Usuario devuelto correctamente
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /register:
+    get:
+      summary: Obtener el formulario de registro
+      responses:
+        '200':
+          description: Formulario devuelto correctamente
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+  /login:
+    get:
+      summary: Obtener el formulario de login
+      responses:
+        '200':
+          description: Formulario devuelto correctamente
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+
