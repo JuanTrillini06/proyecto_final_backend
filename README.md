@@ -29,6 +29,9 @@ http://localhost:9090/apidocs
 
 ## 🐋 Docker
 
+__Link a Docker Hub:__
+[text](https://hub.docker.com/repository/docker/juantrillini/pfinal-app/general)
+
 __En la linea de comandos ejecutar:__
 docker build -t juantrillini/pfinal-app:latest .
 
