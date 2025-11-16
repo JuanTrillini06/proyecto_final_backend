@@ -21,3 +21,8 @@ En linea de comandos ejecutar "npm test". Ejecuta los diferentes test creados da
 
 Aclaracion:
 Las bases de datos de entorno "dev" y "test" son diferentes, por lo que la ejecucion de los test no afecta a los datos cargados y renderizados en el entorno dev.
+
+DOCUMENTACION DE ENDPOINTS
+La documentacion está creada con Swagger, para acceder a ella hay que ingresar al siguiente endpoint desde el navegador:
+
+http://localhost:9090/apidocs
