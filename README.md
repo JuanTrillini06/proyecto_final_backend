@@ -5,7 +5,7 @@
 - Descomprimir la carpeta .env.zip adjunta
 - Pegar los archivos .env en la ruta src/config
 
-## Ejecuciones de entornos:
+## ⏯️ Ejecuciones de entornos:
 En la linea de comandos se pueden ejecutar dos entornos, "dev" y "test".
 
 ### 🛠️ Para ejecutar dev: 
@@ -22,12 +22,12 @@ En linea de comandos ejecutar "npm test". Ejecuta los diferentes test creados da
 ### Aclaracion:
 Las bases de datos de entorno "dev" y "test" son diferentes, por lo que la ejecucion de los test no afecta a los datos cargados y renderizados en el entorno dev.
 
-## 📚 DOCUMENTACION DE ENDPOINTS
+## 📚 Documentacion de endpoints
 La documentacion está creada con Swagger, para acceder a ella hay que ingresar al siguiente endpoint desde el navegador:
 
 http://localhost:9090/apidocs
 
-## Docker
+## 🐋 Docker
 
 __En la linea de comandos ejecutar:__
 docker build -t juantrillini/pfinal-app:latest .
