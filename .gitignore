@@ -6,4 +6,4 @@ node_modules/
 
 # Project-specific env files
 src/config/.env.development
-src/config/.env.production
+src/config/.env.test

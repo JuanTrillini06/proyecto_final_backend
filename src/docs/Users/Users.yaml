@@ -1,4 +1,14 @@
 paths:
+  /api/auth/users:
+    get:
+      summary: Obtener todos los usuarios
+      responses:
+        '200':
+          description: Usuarios devueltos correctamente
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
   /api/auth/register:
     post:
       summary: Registrar un nuevo usuario

@@ -164,3 +164,12 @@ export const current = async (req, res) => {
         payload: user
     });
 };
+
+export const users = async (_req, res) => {
+    const users = await userService.getAll();
+    res.send({
+        status: "success",
+        message: "Usuarios obtenidos.",
+        payload: users
+    });
+};

@@ -1,7 +1,6 @@
 import express from "express";
-import MongoSingleton from "./config/mongodb-singleton.js";
 import cors from "cors";
-import config from "./config/config.js";
+
 import __dirname from "./utils.js";
 import handlebars from "express-handlebars";
 import passport from "passport";
@@ -14,11 +13,12 @@ import productRouter from "./routes/products.routes.js";
 import cartRouter from "./routes/carts.routes.js";
 import authRouter from "./routes/auth.routes.js";
 import viewsRouter from "./routes/views.routes.js";
+import mocksRouter from "../test/routes/mocks.router.js"
 
 import { attachCurrentUser } from "./middlewares/auth.js";
 
 const app = express();
-const PORT = config.port;
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -66,6 +66,9 @@ app.use("/api/carts", cartRouter);
 app.use("/api/auth", authRouter);
 app.use("/", viewsRouter);
 
+// Ruta de mocks para test
+app.use("/api/mocks", mocksRouter);
+
 // Manejador de errores global (siempre al final de app.js)
 app.use((err, req, res, next) => {
   console.error("Error no controlado:", err);
@@ -89,17 +92,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-    console.log(`El servidor corre en el puerto: ${PORT}`);
-});
-
-const mongoInstance = async () => {
-    try {
-        await MongoSingleton.getInstance();
-    } catch (error) {
-        console.error(error);
-        process.exit();
-    }
-};
-mongoInstance();
-
+export default app;

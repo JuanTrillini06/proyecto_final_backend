@@ -16,7 +16,7 @@ console.log("Persistence Mode Option: ", program.opts().persist);
 const environment = program.opts().mode;
 
 dotenv.config({
-    path:environment==="prod"?"./src/config/.env.production":"./src/config/.env.development"
+    path:environment==="test"?"./src/config/.env.test":"./src/config/.env.development"
 });
 
 
