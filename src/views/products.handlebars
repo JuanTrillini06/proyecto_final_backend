@@ -9,7 +9,12 @@
                 </label>
                 <label>
                     Categoria
-                    <input type="text" name="category" value="{{filters.category}}" placeholder="Categoria" />
+                    <select name="category">
+                        <option value="">Todas</option>
+                        {{#each categories}}
+                            <option value="{{this}}" {{#if (eq ../filters.category this)}}selected{{/if}}>{{this}}</option>
+                        {{/each}}
+                    </select>
                 </label>
                 <label>
                     Estado

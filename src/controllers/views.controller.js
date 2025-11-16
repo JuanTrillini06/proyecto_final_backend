@@ -1,4 +1,5 @@
 import { productService } from "../services/product.service.js";
+import productModel from "../data/models/product.model.js";
 import { cartService } from "../services/cart.service.js";
 import {
     ensureCartForRequest,
@@ -50,6 +51,8 @@ export const renderHome = async (req, res) => {
         const productsData = await productService.getAll(filters);
         const sanitizedUser = sanitizeUser(req.user);
 
+        const categories = await productModel.distinct("category");
+
         res.render("products", {
             user: sanitizedUser,
             isLoggedIn: Boolean(sanitizedUser),
@@ -69,6 +72,8 @@ export const renderHome = async (req, res) => {
                 status: status || "",
                 title: title || ""
             }
+            ,
+            categories
         });
     } catch (error) {
         console.error("No se pudo renderizar la vista de productos.", error);

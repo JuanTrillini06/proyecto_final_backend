@@ -6,6 +6,16 @@ const showProductFeedback = (message, isError = false) => {
     container.hidden = false;
     container.textContent = message;
     container.className = isError ? 'error' : 'success';
+    // Toastify notification
+    if (typeof Toastify !== 'undefined') {
+        Toastify({
+            text: message,
+            duration: 3000,
+            gravity: 'top',
+            position: 'right',
+            style: { background: isError ? '#d9534f' : '#28a745' }
+        }).showToast();
+    }
 };
 
 const handleAddToCart = async (productId, quantity = 1) => {

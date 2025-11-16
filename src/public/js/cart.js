@@ -4,6 +4,15 @@ const showCartMessage = (message, isError = false) => {
     container.hidden = false;
     container.textContent = message;
     container.className = isError ? 'error' : 'success';
+    if (typeof Toastify !== 'undefined') {
+        Toastify({
+            text: message,
+            duration: 3500,
+            gravity: 'top',
+            position: 'right',
+            style: { background: isError ? '#d9534f' : '#28a745' }
+        }).showToast();
+    }
 };
 
 const removeProductFromCart = async (cartId, productId) => {

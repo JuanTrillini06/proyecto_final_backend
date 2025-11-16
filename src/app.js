@@ -41,6 +41,12 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 app.use(express.static(__dirname + "/public"));
 
+// Serve selected node_modules assets (Toastify) under /vendor
+app.use(
+  "/vendor/toastify",
+  express.static(__dirname + "/../node_modules/toastify-js")
+);
+
 initializePassport();
 app.use(passport.initialize());
 app.use(attachCurrentUser);
