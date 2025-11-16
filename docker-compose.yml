@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: pfinal-app
+    ports:
+      - "9090:9090"
+    env_file:
+      - ./src/config/.env.${APP_ENV:-development}
+    environment:
+      - PORT=9090
+    restart: unless-stopped
+    volumes:
+      - ./:/app
+    networks:
+      - pfinal-net
+
+networks:
+  pfinal-net:
